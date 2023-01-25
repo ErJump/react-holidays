@@ -1,40 +1,14 @@
-import {React, useEffect, useState} from 'react'
-import axios from 'axios'
+import {React} from 'react'
 
-const url = "https://react--course-api.herokuapp.com/api/v1/data/vacanze";
+export default function Slider(props) {
 
-export default function Slider() {
-    const [holidays, setHolidays] = useState([]);
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [isLoading, setIsLoading] = useState(true);
-    const [isError, setIsError] = useState(false);
-
-    const getHolidays = async () => {
-        setIsLoading(true);
-        try {
-            const response = await axios.get(url);
-            console.log(response.data.data);
-            setHolidays(response.data.data);
-        } catch (error) {
-            setIsError(true)
-            console.error(error)
-        } finally {
-            setIsLoading(false);
-        }
-    }
-
-    useEffect(() => {
-        getHolidays()
-    }, [])
-
-    if (isLoading)
-    return (
+    if (props.isLoading) return (
         <div className='col-12'>
             <h2>Loading...</h2>
         </div>
     )
 
-    if (isError) return (
+    if (props.isError) return (
         <div className='col-12'>
             <h2>Something went wrong...</h2>            
         </div>
@@ -42,13 +16,13 @@ export default function Slider() {
 
     return (
         <div className='col-8 card px-0'>
-            <img src={holidays[activeIndex].img} class="card-img-top" alt="holiday img"/>
-            <div class="card-body">
-                <h5 class="card-title">{holidays[activeIndex].titolo}</h5>
-                <p class="card-text">{holidays[activeIndex].descrizione}</p>
+            <img src={props.holidays[props.activeIndex].img} className="card-img-top" alt="holiday img"/>
+            <div className="card-body">
+                <h5 className="card-title">{props.holidays[props.activeIndex].titolo}</h5>
+                <p className="card-text">{props.holidays[props.activeIndex].descrizione}</p>
                 <div className='d-flex justify-content-between'>
-                    <span className='text-primary'>{holidays[activeIndex].prezzo}$</span>
-                    <span>{holidays[activeIndex].durata}</span>
+                    <span className='text-primary'>{props.holidays[props.activeIndex].prezzo}$</span>
+                    <span>{props.holidays[props.activeIndex].durata}</span>
                 </div>
             </div>
         </div>
