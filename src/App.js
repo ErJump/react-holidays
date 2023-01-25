@@ -51,9 +51,17 @@ function App() {
       <div className="container-lg py-5">
         <h1 className="text-center mb-4">Your magic Holidays</h1>
         <div className="row justify-content-center align-items-center">
-          <button type="button" className="col-1 btn btn-primary" onClick={goPrev}><FontAwesomeIcon icon={faAngleLeft}/></button>
+          {
+            !isLoading && (
+              <button type="button" className="col-1 btn btn-primary" onClick={goPrev}><FontAwesomeIcon icon={faAngleLeft}/></button>
+            )
+          }
           <Slider activeIndex={activeIndex} holidays={holidays} isError={isError} isLoading={isLoading}/>
-          <button type="button" className="col-1 btn btn-primary" onClick={goNext}><FontAwesomeIcon icon={faAngleRight}/></button>
+          {
+            !isLoading && (
+              <button type="button" className="col-1 btn btn-primary" onClick={goNext}><FontAwesomeIcon icon={faAngleRight}/></button>
+            )
+          }
         </div>
       </div>
     </div>

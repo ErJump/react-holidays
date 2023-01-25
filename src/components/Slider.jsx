@@ -1,17 +1,15 @@
 import {React} from 'react'
+import Loader from './Loader'
+import Error from './Error'
 
 export default function Slider(props) {
 
     if (props.isLoading) return (
-        <div className='col-12'>
-            <h2>Loading...</h2>
-        </div>
+        <Loader/>
     )
 
     if (props.isError) return (
-        <div className='col-12'>
-            <h2>Something went wrong...</h2>            
-        </div>
+        <Error/>
     )
 
     return (
